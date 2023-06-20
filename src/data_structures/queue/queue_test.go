@@ -15,6 +15,10 @@ func TestQueue(t *testing.T) {
 		q.Enqueue(i)
 	}
 
+	if q.Length != 5 {
+		t.Errorf("Expected length to be 5 but got %v", q.Length)
+	}
+
 	if v, err := q.Dequeue(); err != nil {
 		t.Error("Expected 1 but got error")
 	} else if v != 1 {
@@ -27,8 +31,8 @@ func TestQueue(t *testing.T) {
 		t.Errorf("Expected 2 but got %v", v)
 	}
 
-	if q.tail.Val != 5 {
-		t.Errorf("Expteded tail to be 5 but got %v", q.tail.Val)
+	if q.Tail.Val != 5 {
+		t.Errorf("Expteded tail to be 5 but got %v", q.Tail.Val)
 	}
 
 	if v, err := q.Peek(); err != nil {

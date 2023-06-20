@@ -4,41 +4,45 @@ import "errors"
 
 type QueueNode struct {
 	Val  int
-	next *QueueNode
+	Next *QueueNode
 }
 
 type Queue struct {
-	head *QueueNode
-	tail *QueueNode
+	Length int
+	Head   *QueueNode
+	Tail   *QueueNode
 }
 
 func (q *Queue) Enqueue(val int) {
 	node := new(QueueNode)
 	node.Val = val
+	q.Length++
 
-	if q.head == nil {
-		q.head = node
-		q.tail = node
+	if q.Head == nil {
+		q.Head = node
+		q.Tail = node
 		return
 	}
 
-	q.tail.next = node
-	q.tail = node
+	q.Tail.Next = node
+	q.Tail = node
 }
 
 func (q *Queue) Dequeue() (int, error) {
-	if q.head == nil {
+	if q.Head == nil {
 		return 0, errors.New("empty queue")
 	}
 
-	val := q.head.Val
-	q.head = q.head.next
+	val := q.Head.Val
+	q.Head = q.Head.Next
+	q.Length--
+
 	return val, nil
 }
 
 func (q *Queue) Peek() (int, error) {
-	if q.head == nil {
+	if q.Head == nil {
 		return 0, errors.New("empty queue")
 	}
-	return q.head.Val, nil
+	return q.Head.Val, nil
 }
