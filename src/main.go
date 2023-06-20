@@ -3,13 +3,31 @@ package main
 import (
 	"fmt"
 
-	search "github.com/deankinane/algo-course/src/search/bubble_sort"
+	datastructures "github.com/deankinane/algo-course/src/data_structures/linked_list"
 )
 
 func main() {
+	head := new(datastructures.LinkedListNode)
+	head.Val = 1
 
-	data := []int{2, 1, 8, 5, 7, 3, 4, 9, 6}
+	current := head
+	for i := 2; i <= 10; i++ {
+		newNode := new(datastructures.LinkedListNode)
+		newNode.Val = i
+		current.Insert(newNode)
+		current = newNode
+	}
 
-	data = search.BubbleSort(data)
-	fmt.Println(data)
+	current = head
+	last := head
+	for current != nil {
+		fmt.Println(current.Val)
+		last = current
+		current = current.Next
+	}
+
+	for last != nil {
+		fmt.Println(last.Val)
+		last = last.Prev
+	}
 }

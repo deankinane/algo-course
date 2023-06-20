@@ -1,4 +1,4 @@
-package search
+package sort
 
 func BubbleSort(data []int) []int {
 	max := len(data)
