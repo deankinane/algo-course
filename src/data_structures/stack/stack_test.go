@@ -10,6 +10,10 @@ func TestStack(t *testing.T) {
 	stack.Push(3)
 	stack.Push(4)
 
+	if stack.Lenght != 4 {
+		t.Errorf("Expected length to be 4 but got %v", stack.Lenght)
+	}
+
 	if v, _ := stack.Pop(); v != 4 {
 		t.Errorf("Expected 4 but got %v", v)
 	}
