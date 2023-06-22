@@ -3,31 +3,20 @@ package main
 import (
 	"fmt"
 
-	datastructures "github.com/deankinane/algo-course/src/data_structures/linked_list"
+	datastructures "github.com/deankinane/algo-course/src/data_structures/ring_buffer"
 )
 
 func main() {
-	head := new(datastructures.LinkedListNode)
-	head.Val = 1
+	rb := datastructures.NewRingBuffer(3)
 
-	current := head
-	for i := 2; i <= 10; i++ {
-		newNode := new(datastructures.LinkedListNode)
-		newNode.Val = i
-		current.Insert(newNode)
-		current = newNode
-	}
+	rb.Enqueue(1)
+	rb.Enqueue(2)
+	rb.Dequeue()
+	rb.Enqueue(3)
+	rb.Enqueue(4)
+	rb.Enqueue(5)
+	rb.Enqueue(6)
 
-	current = head
-	last := head
-	for current != nil {
-		fmt.Println(current.Val)
-		last = current
-		current = current.Next
-	}
-
-	for last != nil {
-		fmt.Println(last.Val)
-		last = last.Prev
-	}
+	fmt.Println(rb.ToString())
+	fmt.Println(rb.ToArray())
 }
