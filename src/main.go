@@ -3,26 +3,12 @@ package main
 import (
 	"fmt"
 
-	recursion "github.com/deankinane/algo-course/src/recursion/maze_solver"
+	sort "github.com/deankinane/algo-course/src/sort/quicksort"
 )
 
 func main() {
-	maze := []string{
-		"########E#",
-		"# #####  #",
-		"# #     ##",
-		"#   ######",
-		"##    ## #",
-		"####S    #",
-	}
+	data := []int{5, 8, 6, 0, 5, 2, 1, 12, 45, 79, 23, 14, 21, 25, 88, 3, 78, 4, 22, 10}
 
-	start := recursion.Point{X: 4, Y: 5}
-
-	if path := recursion.SolveMaze(&maze, &start); path != nil {
-		for i := 0; i < len(maze); i++ {
-			fmt.Println(maze[i])
-		}
-	} else {
-		fmt.Print("Failed to solve the maze")
-	}
+	sort.Quicksort(&data)
+	fmt.Println(data)
 }
