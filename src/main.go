@@ -3,20 +3,26 @@ package main
 import (
 	"fmt"
 
-	datastructures "github.com/deankinane/algo-course/src/data_structures/ring_buffer"
+	recursion "github.com/deankinane/algo-course/src/recursion/maze_solver"
 )
 
 func main() {
-	rb := datastructures.NewRingBuffer(3)
+	maze := []string{
+		"########E#",
+		"# #####  #",
+		"# #     ##",
+		"#   ######",
+		"##    ## #",
+		"####S    #",
+	}
 
-	rb.Enqueue(1)
-	rb.Enqueue(2)
-	rb.Dequeue()
-	rb.Enqueue(3)
-	rb.Enqueue(4)
-	rb.Enqueue(5)
-	rb.Enqueue(6)
+	start := recursion.Point{X: 4, Y: 5}
 
-	fmt.Println(rb.ToString())
-	fmt.Println(rb.ToArray())
+	if path := recursion.SolveMaze(&maze, &start); path != nil {
+		for i := 0; i < len(maze); i++ {
+			fmt.Println(maze[i])
+		}
+	} else {
+		fmt.Print("Failed to solve the maze")
+	}
 }
