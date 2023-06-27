@@ -1,11 +1,11 @@
-package datastructures
+package queue
 
 import (
 	"testing"
 )
 
 func TestQueue(t *testing.T) {
-	q := new(Queue)
+	q := new(Queue[int])
 
 	if _, err := q.Peek(); err == nil {
 		t.Error("Expected empty queue error")
@@ -31,8 +31,8 @@ func TestQueue(t *testing.T) {
 		t.Errorf("Expected 2 but got %v", v)
 	}
 
-	if q.Tail.Val != 5 {
-		t.Errorf("Expteded tail to be 5 but got %v", q.Tail.Val)
+	if q.Tail.Item != 5 {
+		t.Errorf("Expected tail to be 5 but got %v", q.Tail.Item)
 	}
 
 	if v, err := q.Peek(); err != nil {

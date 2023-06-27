@@ -1,21 +1,21 @@
-package datastructures
+package queue
 
 import "errors"
 
-type QueueNode struct {
-	Val  int
-	Next *QueueNode
+type QueueNode[T comparable] struct {
+	Item T
+	Next *QueueNode[T]
 }
 
-type Queue struct {
+type Queue[T comparable] struct {
 	Length int
-	Head   *QueueNode
-	Tail   *QueueNode
+	Head   *QueueNode[T]
+	Tail   *QueueNode[T]
 }
 
-func (q *Queue) Enqueue(val int) {
-	node := new(QueueNode)
-	node.Val = val
+func (q *Queue[T]) Enqueue(val T) {
+	node := new(QueueNode[T])
+	node.Item = val
 	q.Length++
 
 	if q.Head == nil {
@@ -28,21 +28,21 @@ func (q *Queue) Enqueue(val int) {
 	q.Tail = node
 }
 
-func (q *Queue) Dequeue() (int, error) {
+func (q *Queue[T]) Dequeue() (T, error) {
 	if q.Head == nil {
-		return 0, errors.New("empty queue")
+		return *new(T), errors.New("empty queue")
 	}
 
-	val := q.Head.Val
+	val := q.Head.Item
 	q.Head = q.Head.Next
 	q.Length--
 
 	return val, nil
 }
 
-func (q *Queue) Peek() (int, error) {
+func (q *Queue[T]) Peek() (T, error) {
 	if q.Head == nil {
-		return 0, errors.New("empty queue")
+		return *new(T), errors.New("empty queue")
 	}
-	return q.Head.Val, nil
+	return q.Head.Item, nil
 }

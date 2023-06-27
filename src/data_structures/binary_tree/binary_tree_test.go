@@ -50,3 +50,20 @@ func TestBinaryTree_PreOrderTraverse(t *testing.T) {
 		t.Errorf("Exptected %v, got %v", result, data)
 	}
 }
+
+func TestBinaryTree_BreadthFirstSearch(t *testing.T) {
+	index := 0
+	result := "[0 1 8 2 5 9 12 3 4 6 7 10 11 13 14]"
+
+	root := BinaryNode[int]{
+		Val: index,
+	}
+
+	FillTestTree(&root, 2, &index)
+
+	data := root.BreadthFirst()
+
+	if fmt.Sprint(data) != result {
+		t.Errorf("Expected %v, got %v", result, data)
+	}
+}

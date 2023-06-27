@@ -13,8 +13,9 @@ func main() {
 
 	FillTestTree(&root, 2)
 
-	fmt.Print(root.PreOrderTraverse())
-	fmt.Print(root.PostOrderTraverse())
+	// fmt.Print(root.PreOrderTraverse())
+	// fmt.Print(root.PostOrderTraverse())
+	fmt.Print(root.BreadthFirst())
 }
 
 var nodeIndex int = 0

@@ -1,5 +1,7 @@
 package binarytree
 
+import "github.com/deankinane/algo-course/src/data_structures/queue"
+
 type BinaryNode[T comparable] struct {
 	Val   T
 	Left  *BinaryNode[T]
@@ -51,6 +53,27 @@ func walkPostOrder[T comparable](node *BinaryNode[T]) []T {
 	data = append(data, walkPreOrder[T](node.Right)...)
 
 	data = append(data, node.Val)
+
+	return data
+}
+
+func (node *BinaryNode[T]) BreadthFirst() []T {
+	q := queue.Queue[*BinaryNode[T]]{}
+	data := []T{}
+
+	q.Enqueue(node)
+	for q.Length > 0 {
+		v, _ := q.Dequeue()
+
+		if v.Left != nil {
+			q.Enqueue(v.Left)
+		}
+		if v.Right != nil {
+			q.Enqueue(v.Right)
+		}
+
+		data = append(data, v.Val)
+	}
 
 	return data
 }
