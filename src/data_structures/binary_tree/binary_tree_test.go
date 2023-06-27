@@ -67,3 +67,33 @@ func TestBinaryTree_BreadthFirstSearch(t *testing.T) {
 		t.Errorf("Expected %v, got %v", result, data)
 	}
 }
+
+func TestBinaryTree_Comparison(t *testing.T) {
+	index := 0
+
+	n1 := BinaryNode[int]{
+		Val: index,
+	}
+
+	n2 := BinaryNode[int]{
+		Val: index,
+	}
+
+	FillTestTree(&n1, 2, &index)
+	index = 0
+	FillTestTree(&n2, 2, &index)
+
+	if !BinaryTreeComparison[int](&n1, &n2) {
+		t.Error("Exptected true, got false")
+	}
+
+	index = 0
+	n3 := BinaryNode[int]{
+		Val: index,
+	}
+	FillTestTree(&n3, 3, &index)
+
+	if BinaryTreeComparison[int](&n1, &n3) {
+		t.Error("Exptected false, got true")
+	}
+}

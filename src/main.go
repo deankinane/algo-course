@@ -7,15 +7,19 @@ import (
 )
 
 func main() {
-	root := binarytree.BinaryNode[int]{
+	n1 := binarytree.BinaryNode[int]{
 		Val: 0,
 	}
 
-	FillTestTree(&root, 2)
+	n2 := binarytree.BinaryNode[int]{
+		Val: 0,
+	}
 
-	// fmt.Print(root.PreOrderTraverse())
-	// fmt.Print(root.PostOrderTraverse())
-	fmt.Print(root.BreadthFirst())
+	FillTestTree(&n1, 2)
+	nodeIndex = 0
+	FillTestTree(&n2, 3)
+
+	fmt.Print(binarytree.BinaryTreeComparison[int](&n1, &n2))
 }
 
 var nodeIndex int = 0

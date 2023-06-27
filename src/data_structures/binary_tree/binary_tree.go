@@ -77,3 +77,19 @@ func (node *BinaryNode[T]) BreadthFirst() []T {
 
 	return data
 }
+
+func BinaryTreeComparison[T comparable](n1 *BinaryNode[T], n2 *BinaryNode[T]) bool {
+	if n1 == n2 {
+		return true
+	}
+
+	if (n1 != nil && n2 == nil) || (n1 == nil && n2 != nil) {
+		return false
+	}
+
+	if n1.Val != n2.Val {
+		return false
+	}
+
+	return BinaryTreeComparison[T](n1.Left, n2.Left) && BinaryTreeComparison[T](n1.Right, n2.Right)
+}
